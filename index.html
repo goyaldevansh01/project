@@ -261,7 +261,7 @@ footer a:hover{color:var(--text)}
       <span class="chip" data-goal="fullstack">Full Stack</span>
       <span class="chip" data-goal="devops">DevOps/SRE</span>
       <span class="chip" data-goal="ai">AI Engineer</span>
-      <span class="chip" data-goal="mobile">Mobile Dev</span>
+      <span class="chip" data-goal="mobile">Mobile Developer</span>
       <span class="chip" data-goal="security">Security</span>
     </div>
     <div class="path-result" id="pathResult">
@@ -284,7 +284,7 @@ footer a:hover{color:var(--text)}
 <main class="main">
 
   <!-- DAILY CHALLENGE -->
-  <div class="challenge-banner">
+  <div class="challenge-banner" id="challenge">
     <div class="ch-icon">⚡</div>
     <div class="ch-content">
       <div class="ch-eyebrow">Daily Challenge · Day 247</div>
@@ -322,7 +322,7 @@ footer a:hover{color:var(--text)}
         <a href="roadmap-frontend.html" class="rc" data-tags="frontend html css javascript ui"><div class="rc-icon" style="background:rgba(79,126,255,.1)">🖥️</div><div><div class="rc-name">Frontend Dev</div><div class="rc-sub">HTML → CSS → JS → React</div></div><div class="rc-progress" style="width:68%"></div></a>
         <a href="roadmap-backend.html" class="rc" data-tags="backend api database server"><div class="rc-icon" style="background:rgba(139,92,246,.1)">⚙️</div><div><div class="rc-name">Backend Dev</div><div class="rc-sub">APIs · DBs · Architecture</div></div></a>
         <a href="roadmap-fullstack.html" class="rc" data-tags="fullstack frontend backend"><div class="rc-icon" style="background:rgba(45,212,191,.1)">🔁</div><div><div class="rc-name">Full Stack</div><div class="rc-sub">End-to-end development</div></div></a>
-        <a href="Devops Engineer.html" class="rc" data-tags="devops docker kubernetes cloud cicd"><div class="rc-icon" style="background:rgba(245,158,11,.1)">🛠️</div><div><div class="rc-name">DevOps Engineer</div><div class="rc-sub">CI/CD · Docker · K8s</div></div></a>
+        <a href="devops-engineer.html" class="rc" data-tags="devops docker kubernetes cloud cicd"><div class="rc-icon" style="background:rgba(245,158,11,.1)">🛠️</div><div><div class="rc-name">DevOps Engineer</div><div class="rc-sub">CI/CD · Docker · K8s</div></div></a>
         <a href="roadmap-ai-engineer.html" class="rc" data-tags="ai llm machine learning agents"><div class="rc-icon" style="background:rgba(139,92,246,.1)">🤖</div><div><div class="rc-name">AI Engineer<span class="rc-badge badge-ai">AI</span></div><div class="rc-sub">LLMs · RAG · Agents</div></div></a>
         <a href="roadmap-data-analyst.html" class="rc" data-tags="data sql python visualization analytics"><div class="rc-icon" style="background:rgba(16,185,129,.1)">📊</div><div><div class="rc-name">Data Analyst</div><div class="rc-sub">SQL · Python · Charts</div></div></a>
         <a href="roadmap-machine-learning.html" class="rc" data-tags="machine learning ml deep learning python"><div class="rc-icon" style="background:rgba(244,63,94,.1)">🧠</div><div><div class="rc-name">ML Engineer<span class="rc-badge badge-hot">Hot</span></div><div class="rc-sub">Models · MLOps · Deploy</div></div></a>
@@ -346,7 +346,7 @@ footer a:hover{color:var(--text)}
         <a href="roadmap-kubernetes.html" class="rc" data-tags="kubernetes k8s orchestration cloud"><div class="rc-icon" style="background:rgba(79,126,255,.1)">☸️</div><div><div class="rc-name">Kubernetes<span class="rc-badge badge-new">New</span></div><div class="rc-sub">Pods · Helm · Services</div></div></a>
         <a href="roadmap-rust.html" class="rc" data-tags="rust systems performance low level"><div class="rc-icon" style="background:rgba(244,63,94,.1)">🦀</div><div><div class="rc-name">Rust</div><div class="rc-sub">Ownership · Systems</div></div></a>
         <a href="roadmap-golang.html" class="rc" data-tags="golang go backend concurrency"><div class="rc-icon" style="background:rgba(45,212,191,.1)">🐹</div><div><div class="rc-name">Go (Golang)</div><div class="rc-sub">Concurrency · APIs · CLI</div></div></a>
-        <a href="#" class="rc" data-tags="sql database query relational"><div class="rc-icon" style="background:rgba(139,92,246,.1)">🗃️</div><div><div class="rc-name">SQL</div><div class="rc-sub">Queries · Joins · Indexing</div></div></a>
+        <a href="sql.html" class="rc" data-tags="sql database query relational"><div class="rc-icon" style="background:rgba(139,92,246,.1)">🗃️</div><div><div class="rc-name">SQL</div><div class="rc-sub">Queries · Joins · Indexing</div></div></a>
         <a href="roadmap-nodejs.html" class="rc" data-tags="nodejs node javascript backend runtime"><div class="rc-icon" style="background:rgba(16,185,129,.1)">🌿</div><div><div class="rc-name">Node.js</div><div class="rc-sub">Runtime · Express · APIs</div></div></a>
         <a href="aws.html" class="rc" data-tags="aws cloud amazon infrastructure"><div class="rc-icon" style="background:rgba(245,158,11,.1)">☁️</div><div><div class="rc-name">AWS<span class="rc-badge badge-hot">Hot</span></div><div class="rc-sub">Core services · Arch</div></div></a>
         <a href="roadmap-system.html" class="rc" data-tags="system design architecture distributed scale"><div class="rc-icon" style="background:rgba(244,63,94,.1)">🧩</div><div><div class="rc-name">System Design</div><div class="rc-sub">Scale · CAP · Patterns</div></div></a>
@@ -357,11 +357,11 @@ footer a:hover{color:var(--text)}
     <div data-section="best">
       <div class="sh" style="margin-top:2.5rem"><h2>Best Practices</h2><span class="sh-tag" style="background:rgba(16,185,129,.1);color:var(--mint)">Level up</span><div class="sh-line"></div></div>
       <div class="rg">
-        <a href="#" class="rc" data-tags="api security auth owasp"><div class="rc-icon" style="background:rgba(244,63,94,.1)">🔒</div><div><div class="rc-name">API Security</div><div class="rc-sub">Auth · OWASP · Limits</div></div></a>
-        <a href="#" class="rc" data-tags="performance frontend web vitals"><div class="rc-icon" style="background:rgba(79,126,255,.1)">🚀</div><div><div class="rc-name">Frontend Perf</div><div class="rc-sub">Core Web Vitals · Cache</div></div></a>
-        <a href="#" class="rc" data-tags="code review git collaboration"><div class="rc-icon" style="background:rgba(139,92,246,.1)">🔍</div><div><div class="rc-name">Code Review</div><div class="rc-sub">PR etiquette · Patterns</div></div></a>
-        <a href="#" class="rc" data-tags="testing unit integration tdd"><div class="rc-icon" style="background:rgba(16,185,129,.1)">🧪</div><div><div class="rc-name">Testing<span class="rc-badge badge-new">New</span></div><div class="rc-sub">Unit · Integration · E2E</div></div></a>
-        <a href="#" class="rc" data-tags="aws cloud best practices security"><div class="rc-icon" style="background:rgba(245,158,11,.1)">☁️</div><div><div class="rc-name">AWS Best Practices</div><div class="rc-sub">Security · Cost · Scale</div></div></a>
+        <a href="security.html" class="rc" data-tags="api security auth owasp"><div class="rc-icon" style="background:rgba(244,63,94,.1)">🔒</div><div><div class="rc-name">API Security</div><div class="rc-sub">Auth · OWASP · Limits</div></div></a>
+        <a href="frontentpf.html" class="rc" data-tags="performance frontend web vitals"><div class="rc-icon" style="background:rgba(79,126,255,.1)">🚀</div><div><div class="rc-name">Frontend Perf</div><div class="rc-sub">Core Web Vitals · Cache</div></div></a>
+        <a href="codereview.html" class="rc" data-tags="code review git collaboration"><div class="rc-icon" style="background:rgba(139,92,246,.1)">🔍</div><div><div class="rc-name">Code Review</div><div class="rc-sub">PR etiquette · Patterns</div></div></a>
+        <a href="backendbestperformance.html" class="rc" data-tags="testing unit integration tdd"><div class="rc-icon" style="background:rgba(16,185,129,.1)">🧪</div><div><div class="rc-name">Backend Performance<span class="rc-badge badge-new">New</span></div><div class="rc-sub">Unit · Integration · E2E</div></div></a>
+        <a href="awsbestpratice.html" class="rc" data-tags="aws cloud best practices security"><div class="rc-icon" style="background:rgba(245,158,11,.1)">☁️</div><div><div class="rc-name">AWS Best Practices</div><div class="rc-sub">Security · Cost · Scale</div></div></a>
       </div>
     </div>
   </section>
@@ -391,7 +391,7 @@ footer a:hover{color:var(--text)}
   </section>
   <!-- FEATURES -->
   <div class="sh" style="margin-top:1rem"><h2>Why DevPath?</h2><div class="sh-line"></div></div>
-  <div class="feat-grid">
+  <div class="feat-grid" id="community">
     <div class="feat">
       <div class="feat-ico" style="background:rgba(79,126,255,.1)">🗺️</div>
       <h3>Visual Roadmaps</h3>
@@ -584,5 +584,6 @@ canvas.addEventListener('click',e=>{
 window.addEventListener('resize',resize);
 resize();
 </script>
+<script src="/chat-tutor-widget.js" data-topic="Choosing a developer career path"></script>
 </body>
 </html>
