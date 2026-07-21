@@ -14,7 +14,7 @@
 // Swap to 'claude-sonnet-5' if you want stronger answers and don't mind
 // the extra cost per message.
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
