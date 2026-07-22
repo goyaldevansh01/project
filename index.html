@@ -583,7 +583,101 @@ canvas.addEventListener('click',e=>{
 
 window.addEventListener('resize',resize);
 resize();
+// Toggle the chat window visibility
+function toggleChat() {
+  const chatWindow = document.getElementById('chat-window');
+  chatWindow.style.display = chatWindow.style.display === 'none' ? 'flex' : 'none';
+}
+
+// Allow sending messages by pressing Enter
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    sendChatMessage();
+  }
+}
+
+// Main function to send messages to Gemini
+async function sendChatMessage() {
+  const inputElement = document.getElementById('chat-input');
+  const chatHistory = document.getElementById('chat-history');
+  const message = inputElement.value.trim();
+  
+  if (!message) return;
+
+  // 1. Add User Message to UI
+  chatHistory.innerHTML += `
+    <div style="align-self: flex-end; background: #2563eb; color: white; padding: 10px 14px; border-radius: 12px; font-size: 14px; max-width: 80%;">
+      ${message}
+    </div>`;
+  
+  inputElement.value = '';
+  chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to bottom
+
+  try {
+    // 2. Call the free Gemini API
+    const API_KEY = "AQ.Ab8RN6KUDZVuxf3zRrL00bQGDb4mlrRmV3CE52SFCRwPrivYQw"; 
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+    
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: message }] }],
+        // Optional: Give the AI instructions on how to behave
+        systemInstruction: { parts: [{ text: "You are a friendly and concise assistant for a website." }]}
+      })
+    });
+
+    const data = await response.json();
+    const aiResponseText = data.candidates[0].content.parts[0].text;
+
+    // 3. Add AI Response to UI
+    chatHistory.innerHTML += `
+      <div style="align-self: flex-start; background: #e5e7eb; color: #1f2937; padding: 10px 14px; border-radius: 12px; font-size: 14px; max-width: 80%;">
+        ${aiResponseText}
+      </div>`;
+      
+  } catch (error) {
+    // Handle errors (e.g., bad internet, wrong API key)
+    chatHistory.innerHTML += `
+      <div style="align-self: flex-start; background: #fee2e2; color: #b91c1c; padding: 10px 14px; border-radius: 12px; font-size: 14px;">
+        Sorry, I'm having trouble connecting right now.
+      </div>`;
+    console.error("Chatbot Error:", error);
+  }
+  
+  chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to bottom again
+}
 </script>
-<script src="/chat-tutor-widget.js" data-topic="Choosing a developer career path"></script>
+<!-- Chat Widget Container -->
+<div id="ai-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: sans-serif;">
+  
+  <!-- Toggle Button -->
+  <button onclick="toggleChat()" style="background: #2563eb; color: white; border: none; padding: 12px 20px; border-radius: 30px; cursor: pointer; font-size: 16px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    💬 AI Chat
+  </button>
+
+  <!-- Chat Window -->
+  <div id="chat-window" style="display: none; width: 350px; height: 450px; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); flex-direction: column; margin-bottom: 15px; border: 1px solid #e5e7eb; overflow: hidden;">
+    
+    <!-- Header -->
+    <div style="background: #2563eb; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+      <span>Website Assistant</span>
+      <button onclick="toggleChat()" style="background: none; border: none; color: white; cursor: pointer; font-size: 18px;">✖</button>
+    </div>
+
+    <!-- Messages Area -->
+    <div id="chat-history" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f9fafb;">
+      <div style="align-self: flex-start; background: #e5e7eb; padding: 10px 14px; border-radius: 12px; font-size: 14px;">Hi! How can I help you today?</div>
+    </div>
+
+    <!-- Input Area -->
+    <div style="padding: 10px; border-top: 1px solid #e5e7eb; display: flex; background: white; gap: 8px;">
+      <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)" style="flex: 1; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; outline: none; font-size: 14px;">
+      <button onclick="sendChatMessage()" style="background: #2563eb; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold;">Send</button>
+    </div>
+    
+  </div>
+</div>
 </body>
 </html>
